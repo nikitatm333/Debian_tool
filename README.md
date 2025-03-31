@@ -38,21 +38,6 @@ sudo usermod -aG docker $USER
 ```
 
 ## Необходимые зависимости для начала работы
-## Добавление репозиториев и ключей
-```
-sudo wget -qO /etc/apt/trusted.gpg.d/kitware-key.asc https://apt.kitware.com/keys/kitware-archive-latest.asc
-```
-- Загружает GPG-ключ для репозитория Kitware (используется для установки CMake).
-```
-echo "deb https://apt.kitware.com/ubuntu/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/kitware.list
-```
-- Добавляет новый источник пакетов (репозиторий Kitware) в список sources.list.d.
-- $(lsb_release -sc) — автоматически подставляет версию дистрибутива (например, bookworm для Debian 12).
-```
-sudo add-apt-repository -y ppa:git-core/ppa
-```
-- Подключает PPA-репозиторий с последними версиями git.
-
 ## Обновление системы
 ```
 sudo apt update
