@@ -6,7 +6,7 @@
 ```
 sudo apt update && sudo apt install git -y
 ```
-### Добавление репозитория docker:
+### Добавление репозитория Docker:
 ```
 sudo apt update
 ```
