@@ -1,12 +1,12 @@
 # Debian_tool
 Настройка дистрибутива Debian для разработки встраемых систем
 
-Установим git, docker и компилятор
-git:
+## Установим git, docker и компилятор
+### git:
 ```
 sudo apt update && sudo apt install git -y
 ```
-Добавление репозитория docker:
+### Добавление репозитория docker:
 ```
 sudo apt update
 ```
@@ -28,3 +28,12 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.d
 ```
 sudo apt update
 ```
+### Установка Docker:
+```
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
+
+
+
+
+
