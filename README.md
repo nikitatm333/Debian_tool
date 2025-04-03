@@ -125,9 +125,9 @@ sudo ./st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh
 ```
 
 # Установка репозитория:
-## Создаем STM32Cube и Repository, получаем следующий путь:
+## Создаем STM32Cube и Repository
 ```
-/home/USER_NAME/STM32Cube/Repository
+mkdir -p /home/USER_NAME/STM32Cube/Repository
 ```
 
 ## Устанавливаем репозиторий под Вашу серию МК https://cloud.mail.ru/public/2i19/Y4w8kKEiZ в Repository
