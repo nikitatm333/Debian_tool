@@ -1,7 +1,7 @@
 # Debian_tool
 Настройка дистрибутива Debian для разработки встраемых систем
 
-# Установим git, docker и компилятор
+# Установим git, docker 
 ## git:
 ```
 sudo apt update && sudo apt install git -y
@@ -37,7 +37,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 sudo usermod -aG docker $USER
 ```
 
-## Необходимые зависимости для начала работы
+# Необходимые зависимости для начала работы
 ## Обновление системы
 ```
 sudo apt update
@@ -50,6 +50,61 @@ sudo apt upgrade
 ```
 sudo apt install -y build-essential make libtool pkg-config cmake curl automake autoconf gcc git texinfo python3-dev libpython3-dev liblzma5 libncurses5 libncurses5-dev libusb-1.0-0-dev libgtk-3-dev libstlink-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev xz-utils tk-dev
 ```
+
+# Набор инструментов: компилятор, линковщик, ассемблер, отладчик и т.п.
+
+Набор инструментов включает в себя:
+- Компилятор;
+- Компоновщик;
+- Библиотеки времени выполнения.
+
+## Получаем значение последней версии тулчейна:
+
+```
+ARM_TOOLCHAIN_VERSION=$(curl -s https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads | grep -Po '<h4>Version \K.+(?=</h4>)')
+```
+## Далее скачиваем сам тулчейн:
+```
+curl -Lo gcc-arm-none-eabi.tar.xz "https://developer.arm.com/-/media/Files/downloads/gnu/${ARM_TOOLCHAIN_VERSION}/binrel/arm-gnu-toolchain-${ARM_TOOLCHAIN_VERSION}-x86_64-arm-none-eabi.tar.xz"
+```
+### Если загрузка ломается, то можно попробовать сменить DNS сервер, например:
+```
+sudo nano /etc/resolv.conf
+```
+```
+nameserver 8.8.8.8
+```
+## Создаем директорию, где будет находиться тулчейн:
+```
+sudo mkdir /opt/gcc-arm-none-eabi
+```
+## Извлекаем архив в эту директорию:
+```
+sudo tar xf gcc-arm-none-eabi.tar.xz --strip-components=1 -C /opt/gcc-arm-none-eabi
+```
+
+## Добавляем эту директорию в PATH-переменную:
+```
+echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi/bin' | sudo tee -a /home/USER_NAME/.bashrc
+```
+
+# Утилиты для работы с ST-Link
+```
+mkdir ~/sources && cd ~/sources
+sudo apt install libstlink-dev
+git clone https://github.com/stlink-org/stlink.git
+cd stlink
+make clean
+make release
+sudo make install
+```
+
+## Далее необходимо установить права доступа к реальному оборудованию через установку правил udev:
+```
+sudo cp -a config/udev/rules.d/* /lib/udev/rules.d/
+sudo udevadm control --reload-rules && sudo udevadm trigger
+```
+
 
 
 
