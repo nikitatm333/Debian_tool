@@ -105,6 +105,37 @@ sudo cp -a config/udev/rules.d/* /lib/udev/rules.d/
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
+# Установка STM32CubeIDE
+## Скачиваем программное обеспечение https://www.st.com/en/development-tools/stm32cubeide.html 
+### Рекомендую скачивать STM32CubeIDE Generic Linux Installer, а не STM32CubeIDE Debian Linux Installer
+```
+cd ~/Downloads
+```
+## Даем права на исполнение:
+```
+chmod +x st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh
+```
+## Выполняем установку:
+```
+sudo ./st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh
+```
+## Запускаем IDE:
+```
+/opt/st/stm32cubeide_1.18.0/STM32CubeIDE
+```
+
+# Установка репозитория:
+## Создаем STM32Cube и Repository, получаем следующий путь:
+```
+/home/USER_NAME/STM32Cube/Repository
+```
+
+## Устанавливаем репозиторий под Вашу серию МК https://cloud.mail.ru/public/2i19/Y4w8kKEiZ в Repository
+
+
+
+
+
 
 
 
